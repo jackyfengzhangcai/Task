@@ -1,0 +1,9 @@
+<?php
+$db_array=array(
+	"db_host"=>"39.108.113.33:3306",
+	"db_user"=>"root",
+	"db_pass"=>"8751240",
+	"db_name"=>"task",
+	"db_charset"=>"utf8",
+);
+?>
