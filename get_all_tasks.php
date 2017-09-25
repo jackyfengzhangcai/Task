@@ -1,12 +1,6 @@
 <?php
-/**
- * 
- * @authors Jacky Feng (499042532@qq.com)
- * @date    2017-09-23 10:56:43
- */
 include_once "jacky.php";
-include_once "configs.php";
-$db = new DB($db_array);
+$db = new DB;
 $result = $db->get("select * from tasks");
 $array = [];
 foreach ($result["data"] as $key => $value) {

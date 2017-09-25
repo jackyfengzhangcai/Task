@@ -1,14 +1,9 @@
 <?php
-/**
- * @上传文件
- * @authors Jacky Feng (499042532@qq.com)
- * @date 2017-09-22 14:27:35
- */
+//上传文件
 class Upload {
 	var $path;
 	var $allow_type;
 	var $result;
-	
 	/**
 	 * @construct
 	 * @path 上传路径(string)
@@ -68,38 +63,35 @@ class Upload {
 		return $result;
 	}
 }
+//数据库操作
 class DB {
-	var $conn;
-	var $db_host;
-	var $db_name;
-	var $db_user;
-	var $db_pass;
-	var $db_charset;
-	function __construct($db_array) {
-		$this->db_host = $db_array ["db_host"];
-		$this->db_name = $db_array ["db_name"];
-		$this->db_user = $db_array ["db_user"];
-		$this->db_pass = $db_array ["db_pass"];
-		$this->db_charset = $db_array ["db_charset"];
-	}
+	var $db_host="39.108.113.33:3306";//数据库地址
+	var $db_user="root";//数据库用户
+	var $db_pass="8751240";//数据库密码
+	var $db_name="task";//数据库名
+	var $db_charset="utf8";//数据库编码
+	var $conn;//数据库连接对象
+	//连接数据库
 	public function connect() {
 		$this->conn = mysqli_connect ( $this->db_host, $this->db_user, $this->db_pass, $this->db_name );
 		mysqli_set_charset ( $this->conn, $this->db_charset );
 		if ($this->conn) {
 			return array (
 					"error" => false,
-					"data" => $this->conn 
+					"data" => $this->conn
 			);
 		} else {
 			return array (
 					"error" => true,
-					"data" => mysqli_connect_error () 
+					"data" => mysqli_connect_error ()
 			);
 		}
 	}
+	//关闭数据库
 	public function close() {
 		mysqli_close ( $this->conn );
 	}
+	//查询数据库
 	public function get($sql) {
 		$this->connect ();
 		$result = mysqli_query ( $this->conn, $sql );
@@ -111,16 +103,17 @@ class DB {
 			$this->close ();
 			return array (
 					"error" => false,
-					"data" => $reslutArray 
+					"data" => $reslutArray
 			);
 		} else {
 			$this->close ();
 			return array (
 					"error" => true,
-					"data" => mysqli_error ( $this->conn ) 
+					"data" => mysqli_error ( $this->conn )
 			);
 		}
 	}
+	//更新数据库
 	public function set($sql) {
 		$this->connect ();
 		$reslut = mysqli_query ( $this->conn, $sql );
@@ -128,16 +121,17 @@ class DB {
 			$this->close ();
 			return array (
 					"error" => false,
-					"data" => $reslut 
+					"data" => $reslut
 			);
 		} else {
 			$this->close ();
 			return array (
 					"error" => true,
-					"data" => mysqli_error ( $this->conn ) 
+					"data" => mysqli_error ( $this->conn )
 			);
 		}
 	}
+	//插入数据库
 	public function insert($sql) {
 		$this->connect ();
 		$reslut = mysqli_query ( $this->conn, $sql );
@@ -145,17 +139,18 @@ class DB {
 			$this->close ();
 			return array (
 					"error" => false,
-					"data" => $reslut 
+					"data" => $reslut
 			);
 		} else {
 			$this->close ();
 			return array (
 					"error" => true,
-					"data" => mysqli_error ( $this->conn ) 
+					"data" => mysqli_error ( $this->conn )
 			);
 		}
 	}
 }
+//模拟访问页面
 class Http {
 	function get($url) {
 		$ch = curl_init ();
