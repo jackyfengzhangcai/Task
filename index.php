@@ -42,7 +42,8 @@ body{
 </head>
 <body>
 	<div id="top" style="background-color: #fff;height: 50px;width:100%;position: fixed;top: 0px;">
-		<a><img style="margin-top: 9px;margin-left:20px;width: 32px;height: 32px;" src="3.png"></a>
+		<span style="position: absolute;top: calc(50% - 8px);left: calc(50% - 24px);">趣任务</span>
+		<img style="width: 32px;height: 32px;position:absolute;right: 20px;top: calc(50% - 16px);" src="3.png">
 	</div>
 	<div id="top_hidden" style="height: 50px;"></div>
     <div id="content" style="height: auto;width: calc(100% - 35px);"></div>
